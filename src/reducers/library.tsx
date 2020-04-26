@@ -2,7 +2,7 @@ import { SETLIBRARY, SETCURRENTLYPLAYING, SETVOLUME } from '../actions/library';
 
 const initialState = {
   library: [],
-  currentlyplaying: null,
+  currentlyPlaying: null,
   volume: 20
 }
 
@@ -16,7 +16,7 @@ export default (state = initialState, action : any) => {
     case SETCURRENTLYPLAYING:
       return {
         ...state,
-        currentlyplaying: action.libraryItem
+        currentlyPlaying: action.libraryItem
       }
     case SETVOLUME:
       return {

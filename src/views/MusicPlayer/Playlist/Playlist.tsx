@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Item from './Item/Item';
 import './Playlist.css';
 
 // Playlist class
 function Playlist(props: any) {
 
-  const { library, show, toggle } = props;
+  const { library, show, toggle, renderItem } = props;
 
   return (
     <div id="playlist" className={`${show ? `show` : ``}`}>
       <div className="row">
         <div className="col">
-          <button id="playlist-toggle" onPointerUp={() => { toggle(); }} className="btn btn-block p-3 pl-5 pr-5">
+          <button id="playlist-toggle" onPointerUp={() => { toggle(); }} data-testid="playlist-toggle-button" className="btn btn-block p-3 pl-5 pr-5">
             <div className="bg-white rounded-pill"></div>
           </button>
         </div>
@@ -27,6 +26,9 @@ function Playlist(props: any) {
           </div>
           <div className="list-group list-group-flush">
             {/* Insert Item List Here From Library */}
+            {
+              library.map((song: any) => renderItem(song))
+            }
           </div>
         </div>
       </div>

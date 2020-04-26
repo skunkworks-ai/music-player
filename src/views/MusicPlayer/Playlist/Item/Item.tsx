@@ -6,11 +6,11 @@ import './Item.css';
 // Item class
 function Item(props: any) {
 
-  const { item, currentlyplaying } = props;
+  const { item, currentlyPlaying, onPlayAudio } = props;
 
   return (
     <div className="list-group-item border-white p-0" key={`item-${item.id}`}>
-      <button className="btn btn-block btn-outline-light text-left border-0 rounded-0" onPointerUp={() => { /* Play audio item on click */ }}>
+      <button className="btn btn-block btn-outline-light text-left border-0 rounded-0" onPointerUp={() => { onPlayAudio(item) }}>
         <div className="row no-gutters">
           <div className="col mr-3" style={{flex: '0 0 50px'}}>
             <img src={item.albumArt} alt={item.title}/>
@@ -22,9 +22,9 @@ function Item(props: any) {
           </div>
           <div className="col d-flex justify-content-between align-items-center text-center" style={{flex: '0 0 30px'}}>
             {/* Add Render Condition Here if currently playing is equals to this item */}
-            {/*() &&
+            { (item.id === currentlyPlaying.id) &&
               <i className="fa fa-play"></i>
-            */}
+            }
           </div>
         </div>
       </button>
@@ -34,7 +34,7 @@ function Item(props: any) {
 
 function mapStateToProps(state: any) {
   return {
-    currentlyplaying: state.library.currentlyplaying
+    currentlyPlaying: state.library.currentlyPlaying
   };
 }
 
