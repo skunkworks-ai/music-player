@@ -10,9 +10,9 @@ declare global {
   }
 }
 
-export const history = createBrowserHistory()
+export const history = createBrowserHistory();
 
-const enhancers : any = [];
+const enhancers: any = [];
 if (process.env.NODE_ENV === 'development') {
   const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
 
@@ -25,14 +25,8 @@ export default function configureStore(preloadedState = {}) {
   const store = createStore(
     createRootReducer(history),
     preloadedState,
-    compose(
-      applyMiddleware(
-        thunk,
-        routerMiddleware(history)
-      ),
-      ...enhancers
-    ),
-  )
+    compose(applyMiddleware(thunk, routerMiddleware(history)), ...enhancers)
+  );
 
-  return store
+  return store;
 }
